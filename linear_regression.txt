@@ -1,0 +1,67 @@
+basic form of ml - {-_-}
+have linear corresepondence between data points.
+
+we deal with line of best fit to understand how x and y co-realate
+
+basically of the form y = mx+ c
+where b is the y intercept, meaning it lies on y axis and the line starts from there...
+and x and y are the co-oridnate values,
+
+m is the slope defines the stepness of best-fit line
+we caliculate it using rise over run meaning
+how much we went up and how much we went horizontally
+
+this concept can be used in multiple dimentions too 
+for example in 3-D
+we have x,y,z
+
+we can find x if we know y,z (or)
+            y            x,z (or)
+            z            x,y .
+
+We are gonna use titanic data set for this algorithm
+
+anyways we import the data using pandas pd.read_csv(link, or file name)
+
+and to show it we use the variable.head()
+
+y_train = dftrain.pop('survived'), will pop and store the values of that column into the variable
+We do that cause we are going to work on that only!
+
+
+
+for linear estimator we have to create this FEATURE_COLUMNS
+using tf,
+it is list basically,
+
+we loop through each feature name int the catogorical column and we define a vocabulary which is equal to 
+the unique items in our feature names in dataset
+
+now, feature_columns.append(tf.feature_column.catogorical_column_with_vocabulary_list(feature_name, vocabulary))
+
+a column that is numpy array like column 
+it has feature name and all the vocabulary
+
+
+creating a model
+
+before that the training process....
+we feed the info, (datapoints from dataset)
+
+all at a time??
+no right for likr 20 terabites of data
+so we do it in batches -> 32 entries. for this exercise.
+
+so we also have the epochs... how many times the model is going to see the same data.
+(ike the data is same but the order is changed)
+So at the end we get most accurate best-fit line.
+
+also, we don't follow the same number of epochs, we start with less and incrementally increse the number.
+
+
+we also have an input function,
+the way we define how our data is divided into batched and epochs.
+
+it takes are data and encodes our data in tf.data.Dataset onject
+cause our model needs that specific object to work...
+
