@@ -1,0 +1,108 @@
+pandas lib > data analysis lib
+allows us to read and work with diff kinds of data : ) -> analysis of csv, xlsx, etc..
+it has good performance as it is built on top of numpy
+
+
+dataframes are like tabular data > it has the following attributes :  df.
+.shape
+.info()
+.head(n) -> gives first n
+.tail(n) -> gives last n
+pd.set_option('display.max_columns', 85)
+we get all the 85 columns, (it tells how many columns to print when we print df)
+
+there is a max_rows too
+
+
+
+the type of dict can be used as tables df:
+key = col name, values are data
+
+by the way call a col using df['col name']
+
+type(df['col name']) -> pandas.core.series.Series
+- > in lay man termss it is row's of data
+
+we cal also call df.col_name but then key words get messed up with it.. so prefer []
+
+two call multiple col's use a list in []
+that is -> df[['colname1','colname2']]
+
+don't know what col's are? 
+use     df.columns
+
+
+
+
+to get row's we use loc and iloc.
+iloc allows us to accesses the rows by integer location
+
+
+1st row is something like 
+df.iloc[0]
+
+to get multiple rows again we use a list in list like df.iloc[[1,2,3,4,5...]]
+and to get a specific column by indexing == it will be like (for 1,2,3 rows and 2,3 col's)
+it's df.[[0,1,2],[2,3]]
+
+
+
+ok in the loc, for col's we can give the actual col names...
+something like df.loc[[1,2,3],['name','hehe']]
+
+for loc we can also pass sliced values like [1,2,3] can be written as 1:3 without []
+and note that the last element will vbe included.
+
+we can weirdly do it to col names too but here the last element is not inclusive like pandas wtf?
+
+
+
+counts ->they give the count of unique columns
+syn : df['col_name'].value_counts()
+
+
+
+we learn now abt indexing: custum indexing
+
+we can simply set any col_values to index by :::
+df.set_index('col_name')
+
+but again when we call df -> the indexing will be like regular! then what is the use of the above syntax?
+well this feature is for allowing us to experiment rathen then worrying it will modefy the data perminantly
+anyways to set in we use the inplace parameter
+
+df.set_index('col_name', inplace=True)
+now using df or df.index gives the values of the col_name
+: )
+
+but if we use df.loc[0] now we get a type error : (
+but if you reall want to use them that badly them use iloc
+
+to reset the index off the tables we do so the do we do
+df.reset_index(inplace=True)
+
+we can also set index when we are reading itself  as ::
+#df = pd.read_csv('some text name that has csv extension', index_col='col_name')
+
+
+just a random new sorting method
+df.sort_index() will sort alphabetically!
+in desc ==> df.sort_index(ascending=True)
+
+but without implace=True (data will be as it is)
+
+
+
+#filtering data : )
+
+df.["col_name"] == comparision
+return true for row if criteria met
+else false
+
+we can also send filter as a col_name
+filt = df.filt['col_name] == comparision
+df[filt]   ==> returns all the rows which pass the condition.
+
+we can also put the entire condition in df::
+df[df['col_name']==comparision]
+
